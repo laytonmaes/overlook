@@ -4,12 +4,57 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Alegreya" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+  <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <div class="user-dashboard">
+    <header>
+      <h1>OVERLOOK HOTEL</h1>
+      <h2>Welcome, User!</h2>
+    </header>
+    <main>
+        <section class="book-room">
+          <h2>Book a Room</h2>
+          <div class="search-and-filter">
+            <input class="date" type="search" value="date">
+            <button class="tag single-tag">Single</button>
+            <button class="tag single-tag">Junior</button>
+            <button class="tag single-tag">Suite</button>
+          </div>
+          <section class="room-info">
+
+          </section>
+        </section>
+        <section class="user-bookings">
+          <div class="user-bookings-head">
+            <h3>Username Bookings :</h3>
+            <h3>Total Spent: $2000</h3>
+          </div>
+          <div class="bookings-info">
+            <section class="bookings past-bookings">
+              <h3>Past Bookings</h3>
+              <div></div>
+            </section>
+            <section class="bookings upcoming-bookings">
+              <h3>Upcoming Bookings</h3>
+              <div></div>
+            </section>
+          </div>
+        </section>
+      </div>
+      <div class="login-page">
+        <h1>OVERLOOK HOTEL</h1>
+        <form>
+          <label for="username">Username:</label><br>
+          <input type="text" id="username" name="username"><br>
+          <label for="password">Password:</label><br>
+          <input type="text" id="password" name="password">
+        </form>
+      </div>
+  </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
