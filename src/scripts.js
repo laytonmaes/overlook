@@ -156,33 +156,34 @@ const checkDatePassed = (booking) => {
 } 
 
 const displayCurrentBookingsPast = () => {
-    bookingsPastSelect.innerHTML = " "
+    bookingsPastSelect.innerHTML = `<ul role="list" id="pastBookingsList"></ul>`
+    const listPastBookings = document.getElementById("pastBookingsList")
     bookingsPast.forEach((booking) => {
         let bookingRoom = hotel.rooms.find((room) => {
            return room.roomNum === booking.room
         })
-        bookingsPastSelect.innerHTML +=
-        `
-        <div class="booking-info">
-        <p>room: ${booking.room} date: ${booking.date} cost: ${bookingRoom.cost}</p>
-        </div>
-        `
+
+        let newRoomItem = document.createElement("li");
+        newRoomItem.setAttribute("role", "listitem")
+        newRoomItem.appendChild(document.createTextNode(`room: ${booking.room} date: ${booking.date} cost: ${bookingRoom.cost}`))
+
+        listPastBookings.appendChild(newRoomItem)
     })
 }
 
 const displayCurrentBookingsFuture = () => {
-    bookingsFutureSelect.innerHTML = " "
+    bookingsFutureSelect.innerHTML = `<ul role="list" id="futureBookingsList"></ul>`
+    const listFutureBookings = document.getElementById("futureBookingsList")
     bookingsFuture.forEach((booking) => {
         let bookingRoom = hotel.rooms.find((room) => {
            return room.roomNum === booking.room
         })
 
-        bookingsFutureSelect.innerHTML +=
-        `
-        <div class="booking-info">
-        <p>room: ${booking.room} date: ${booking.date} cost: ${bookingRoom.cost}</p>
-        </div>
-        `
+        let newRoomItem = document.createElement("li");
+        newRoomItem.setAttribute("role", "listitem")
+        newRoomItem.appendChild(document.createTextNode(`room: ${booking.room} date: ${booking.date} cost: ${bookingRoom.cost}`))
+        
+        listFutureBookings.appendChild(newRoomItem)
     })
 }
 
@@ -260,5 +261,3 @@ const postBooking = (newBooking) => {
         })
     })
 }
-
-
