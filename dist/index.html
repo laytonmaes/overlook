@@ -10,7 +10,23 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <div class="user-dashboard">
+  <div class="login-page">
+    <header>
+      <h1>OVERLOOK HOTEL</h1>
+    </header>
+    <div class="login-wrapper">
+      <form class="login-form">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <p class="hidden" id="usernameError">Username is Incorrect</p>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password">
+        <p class="hidden" id="passwordError">Password is Incorrect</p>
+        <input type="submit" value="Log in" id="loginButton">
+      </form>
+    </div>
+  </div>
+  <div class="user-dashboard hidden">
     <header>
       <h1>OVERLOOK HOTEL</h1>
       <h2 id="welcomeMessage">Welcome, User!</h2>
@@ -20,12 +36,22 @@
           <h2>Book a Room</h2>
           <div class="search-and-filter">
             <div>
-              <input type="date" id="userDate" value="">
+              <label for="userDate">Date:</label><br>
+              <input type="date" id="userDate" name ="date" value="">
               <button id="submitDate">Submit</button>
             </div>
-            <button class="tag single-tag">Single</button>
-            <button class="tag junior-tag">Junior</button>
-            <button class="tag suite-tag">Suite</button>
+            <button class="tag single-tag">
+              Filter by Single
+              <span class="visually-hidden">tag</span>
+            </button>
+            <button class="tag junior-tag">
+              Filter by Junior
+              <span class="visually-hidden">tag</span>
+            </button>
+            <button class="tag suite-tag">
+              Filter by Suite
+              <span class="visually-hidden">tag</span>
+            </button>
           </div>
           <section class="rooms">
 
@@ -39,26 +65,20 @@
           <div class="bookings-info">
             <section class="bookings past-bookings">
               <h3>Past Bookings</h3>
-              <div class="bookings-display" id="pastBookings">
-              </div>
+              <section class="bookings-display" id="pastBookings">
+                <ul role="list"id="pastBookingsList"></ul>
+              </section>
             </section>
             <section class="bookings upcoming-bookings">
               <h3>Upcoming Bookings</h3>
-              <div class="bookings-display" id="upcomingBookings"></div>
+              <section class="bookings-display" id="upcomingBookings">
+                <ul role="list" id="futureBookingsList"></ul>
+              </section>
             </section>
           </div>
         </section>
       </div>
-      <div class="login-page">
-        <h1>OVERLOOK HOTEL</h1>
-        <form>
-          <label for="username">Username:</label><br>
-          <input type="text" id="username" name="username"><br>
-          <label for="password">Password:</label><br>
-          <input type="text" id="password" name="password">
-          <input type="submit" value="Login" id="loginButton">
-        </form>
-      </div>
+
   </main>
   
   <script src="bundle.js"></script>
