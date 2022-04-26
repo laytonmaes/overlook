@@ -3,10 +3,7 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
-import Customer from './classes/Customer';
 import Hotel from './classes/Hotel';
-import Room from './classes/Room';
-import Booking from './classes/Booking';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
@@ -30,7 +27,12 @@ const inputDate = document.querySelector("#userDate")
 const buttonDate = document.querySelector("#submitDate")
 const inputUsername = document.querySelector("#username")
 const inputPassword = document.querySelector("#password")
+
 const buttonLogin = document.querySelector("#loginButton")
+const errorUsername = document.getElementById("usernameError")
+const errorPassword = document.getElementById("passwordError")
+const pageUserDashboard = document.querySelector(".user-dashboard")
+const pageLogin = document.querySelector(".login-page")
 
 //------------------- event listeners -------------------//
 window.onload = () => {
@@ -93,10 +95,18 @@ const logIn = () => {
         newUserNum = parseInt(newUserNum)
 
     if(username.includes("customer") && password === "overlook2021" && newUserNum && 1 < newUserNum < 50) {
-        console.log("stuff")
         userIndex = newUserNum
         user = hotel.customers[userIndex]
         displayUserInfo()
+        pageLogin.classList.add("hidden")
+        pageUserDashboard.classList.remove("hidden")
+    } else {
+        if(!username.includes("customer") || 1 > newUserNum > 50) {
+            errorUsername.classList.remove("hidden")
+        }
+        if (password !== "overlook2021") {
+            errorPassword.classList.remove("hidden")
+        }
     }
 } 
 
@@ -138,12 +148,7 @@ const convertDateForData = (date) => {
 }
 
 const checkDatePassed = (booking) => {
-    
-    let bookingDateSplit = booking.date.split("/")
-    let currentDateSplit = hotel.date.split("/")
-    if(bookingDateSplit[0] < currentDateSplit[0] 
-        || bookingDateSplit[1] < currentDateSplit[1]
-        || bookingDateSplit[2] < currentDateSplit[2]) {
+    if(booking.date < hotel.date) {
         bookingsPast.push(booking)
     } else {
         bookingsFuture.push(booking)
@@ -182,7 +187,7 @@ const displayCurrentBookingsFuture = () => {
 }
 
 const displayTotalSpent = () => {
-    totalSpent.innerHTML = "$"+`${user.moneySpent}`
+    totalSpent.innerHTML = "Total booking cost: $"+`${user.moneySpent}`
 }
 
 let filterRoomsByDate = (date) => {
@@ -198,7 +203,7 @@ let displayFilteredRooms = (Arr) => {
     if(Arr.length === 0){
         roomsSelect.innerHTML = 
         `<p>We are so sorry to report no rooms with those conditions are available. </p>
-        <p>Please forgive us!</p>`;
+        <p>Please try another date or tag, and forgive us for this oversight!</p>`;
         return
     }
     Arr.forEach((room) => {
@@ -206,7 +211,10 @@ let displayFilteredRooms = (Arr) => {
         `
         <div class="rooms-info">
         <p>Room: ${room.roomNum} Type: ${room.typeOfRoom} Beds: ${room.numBeds} ${room.bedSize} Cost: ${room.cost}</p>
-        <button id="room${room.roomNum}">Book Room</button>
+        <button id="room${room.roomNum}">
+        Book Room
+        <span class="visually-hidden">${room.roomNum}, Type: ${room.typeOfRoom} Beds: ${room.numBeds} ${room.bedSize} for ${inputDate.value}</span>
+        </button>
         </div>
         `
     })
@@ -252,3 +260,5 @@ const postBooking = (newBooking) => {
         })
     })
 }
+
+
