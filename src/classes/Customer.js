@@ -26,6 +26,7 @@ class Customer {
                 }
             })
         })
+        totalCost = totalCost.toFixed(2);
         return totalCost;
     }
 }

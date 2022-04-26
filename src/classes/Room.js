@@ -14,7 +14,7 @@ class Room {
         if (roomData.roomType.includes("single")){
             return "single";
         } else if (roomData.roomType.includes("junior")) {
-            return"junior";
+            return "junior";
         } else if (roomData.roomType.includes("suite")) {
             return "residential"
         } else {

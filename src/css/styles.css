@@ -63,15 +63,17 @@ main {
   align-items: center;
 }
 
-.room-info {
+.rooms {
   height: 60%;
   width:90%;
+  overflow-y: scroll;
 }
 
 /* user-bookings */
 
 .user-bookings {
   height: 40%;
+  width: 90%
 }
 
 .user-bookings-head {
@@ -94,4 +96,8 @@ main {
   width:45%;
   display: flex;
   flex-direction: column;
+}
+
+.bookings-display {
+  overflow-y: scroll;
 }
