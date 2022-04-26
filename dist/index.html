@@ -19,7 +19,10 @@
         <section class="book-room">
           <h2>Book a Room</h2>
           <div class="search-and-filter">
-            <input class="date" type="search" value="date">
+            <div>
+              <input type="date" id="userDate" value="">
+              <button id="submitDate">Submit</button>
+            </div>
             <button class="tag single-tag">Single</button>
             <button class="tag junior-tag">Junior</button>
             <button class="tag suite-tag">Suite</button>
@@ -36,12 +39,12 @@
           <div class="bookings-info">
             <section class="bookings past-bookings">
               <h3>Past Bookings</h3>
-              <div id="pastBookings">
+              <div class="bookings-display" id="pastBookings">
               </div>
             </section>
             <section class="bookings upcoming-bookings">
               <h3>Upcoming Bookings</h3>
-              <div id="upcomingBookings"></div>
+              <div class="bookings-display" id="upcomingBookings"></div>
             </section>
           </div>
         </section>
@@ -57,7 +60,7 @@
         </form>
       </div>
   </main>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+  
   <script src="bundle.js"></script>
 
 </body>

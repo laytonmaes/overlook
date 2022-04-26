@@ -26,24 +26,42 @@ const roomsSelect = document.querySelector(".rooms")
 const bookingsPastSelect = document.getElementById("pastBookings")
 const bookingsFutureSelect = document.getElementById("upcomingBookings")
 
-const inputDate = document.querySelector(".date")
+const inputDate = document.querySelector("#userDate")
+const buttonDate = document.querySelector("#submitDate")
 const inputUsername = document.querySelector("#username")
 const inputPassword = document.querySelector("#password")
 const buttonLogin = document.querySelector("#loginButton")
 
 //------------------- event listeners -------------------//
-buttonLogin.addEventListener("click", (e) => {
-    e.preventDefault()
+window.onload = () => {
+    apiCalls.then(data => {
+        getData = data[0]
+        postData = data[1]
+       let customerData = data[2].customers
+       let roomData = data[3].rooms
+       let bookingData = data[4].bookings
+       hotel = new Hotel(roomData,bookingData,customerData)
+       }).then(() => {
+           updateDate()
+       })
+}
+
+buttonLogin.addEventListener("click", (event) => {
+    event.preventDefault()
     logIn()
 })
 
+buttonDate.addEventListener("click", () => {
+    let userInputDate = convertDateForData(inputDate.value)
+    filterRoomsByDate(userInputDate)
+    displayFilteredRooms(roomsFilteredByDate)
+})
 tagJunior.addEventListener("click", () => {
     filterRoomsByTag("junior")
     displayFilteredRooms(roomsFilteredByTag)
 })
 tagSingle.addEventListener("click", () => {
     filterRoomsByTag("single")
-    console.log(roomsFilteredByTag)
     displayFilteredRooms(roomsFilteredByTag)
 })
 tagSuite.addEventListener("click", () => {
@@ -51,26 +69,35 @@ tagSuite.addEventListener("click", () => {
     displayFilteredRooms(roomsFilteredByTag)
 })
 
+roomsSelect.addEventListener("click", (event) => {
+    createBooking(event)
+})
+
 // ------------------- main code -------------------//
 
 let hotel;
+let userIndex;
 let user;
 let bookingsPast = [];
 let bookingsFuture = [];
 let roomsFilteredByDate;
 let roomsFilteredByTag;
-
-apiCalls.then(data => {
-    let customerData = data[2].customers
-    let roomData = data[3].rooms
-    let bookingData = data[4].bookings
-    hotel = new Hotel(roomData,bookingData,customerData)
-}).then(() => console.log(hotel))
+let postData;
+let getData;
 
 const logIn = () => {
-    user = hotel.customers[0]
-   // console.log(user)
-    displayUserInfo()
+    let username = inputUsername.value
+    let password = inputPassword.value
+
+    let newUserNum = username.replace("customer", " ")
+        newUserNum = parseInt(newUserNum)
+
+    if(username.includes("customer") && password === "overlook2021" && newUserNum && 1 < newUserNum < 50) {
+        console.log("stuff")
+        userIndex = newUserNum
+        user = hotel.customers[userIndex]
+        displayUserInfo()
+    }
 } 
 
 const displayUserInfo = () => {
@@ -79,7 +106,8 @@ const displayUserInfo = () => {
     displayCurrentBookingsFuture()
     displayCurrentBookingsPast()
     displayTotalSpent()
-    filterRoomsByDate("2022/11/11")
+    let userInputDate = convertDateForData(inputDate.value)
+    filterRoomsByDate(userInputDate)
     displayFilteredRooms(roomsFilteredByDate)
 }
 
@@ -88,12 +116,29 @@ const changeWelcome = () => {
 }
 
 const checkUserBookings = () => {
+    bookingsPast = []
+    bookingsFuture = []
     user.bookings.forEach((booking) => {
         checkDatePassed(booking)
     })
 }
 
+const updateDate = () => {
+    inputDate.value =  convertDateForDom(hotel.date)
+}
+
+const convertDateForDom = (date) => {
+    let splitDate =date.split("/");
+    return splitDate[0]+ "-" + splitDate[1] + "-" + splitDate[2]
+}
+
+const convertDateForData = (date) => {
+    let splitDate =date.split("-");
+    return splitDate[0]+ "/" + splitDate[1] + "/" + splitDate[2]
+}
+
 const checkDatePassed = (booking) => {
+    
     let bookingDateSplit = booking.date.split("/")
     let currentDateSplit = hotel.date.split("/")
     if(bookingDateSplit[0] < currentDateSplit[0] 
@@ -150,11 +195,18 @@ let filterRoomsByDate = (date) => {
 }
 let displayFilteredRooms = (Arr) => {
     roomsSelect.innerHTML = "";
+    if(Arr.length === 0){
+        roomsSelect.innerHTML = 
+        `<p>We are so sorry to report no rooms with those conditions are available. </p>
+        <p>Please forgive us!</p>`;
+        return
+    }
     Arr.forEach((room) => {
         roomsSelect.innerHTML +=
         `
         <div class="rooms-info">
         <p>Room: ${room.roomNum} Type: ${room.typeOfRoom} Beds: ${room.numBeds} ${room.bedSize} Cost: ${room.cost}</p>
+        <button id="room${room.roomNum}">Book Room</button>
         </div>
         `
     })
@@ -167,4 +219,36 @@ const filterRoomsByTag = (tag) => {
         }
         return acc;
     }, [])
+}
+
+const createBooking = (event) => {
+    if(event.target.id) {
+        let newRoomNum = event.target.id
+        newRoomNum = newRoomNum.replace("room", " ")
+        newRoomNum = parseInt(newRoomNum)
+
+        let newId = Date.now()
+        let newDate = convertDateForData(inputDate.value)
+        const newBooking = {"id":newId,"userID":user.id,"date":newDate,"roomNumber":newRoomNum}
+        postBooking(newBooking)
+    }
+}
+
+const postBooking = (newBooking) => {
+    postData(newBooking, "bookings")
+    .then(() => {
+        const customerData = getData("customers")
+        const roomData = getData("rooms")
+        const bookingData = getData("bookings")
+        Promise.all([customerData, roomData, bookingData])
+        .then(data => {
+            let customerData = data[0].customers
+            let roomData = data[1].rooms
+            let bookingData = data[2].bookings
+            hotel = new Hotel(roomData,bookingData,customerData)
+        })
+        .then(() => {
+            logIn()
+        })
+    })
 }

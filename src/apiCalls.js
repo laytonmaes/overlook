@@ -18,7 +18,7 @@ const postData = (formData, fetchApi) => {
             return response.json()
         }
     })
-    .catch(error = console.log(error))
+    .catch(error => console.log(error))
 }
 
 const customerData = getData("customers")
