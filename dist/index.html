@@ -13,7 +13,7 @@
   <div class="user-dashboard">
     <header>
       <h1>OVERLOOK HOTEL</h1>
-      <h2>Welcome, User!</h2>
+      <h2 id="welcomeMessage">Welcome, User!</h2>
     </header>
     <main>
         <section class="book-room">
@@ -21,26 +21,27 @@
           <div class="search-and-filter">
             <input class="date" type="search" value="date">
             <button class="tag single-tag">Single</button>
-            <button class="tag single-tag">Junior</button>
-            <button class="tag single-tag">Suite</button>
+            <button class="tag junior-tag">Junior</button>
+            <button class="tag suite-tag">Suite</button>
           </div>
-          <section class="room-info">
+          <section class="rooms">
 
           </section>
         </section>
         <section class="user-bookings">
           <div class="user-bookings-head">
-            <h3>Username Bookings :</h3>
-            <h3>Total Spent: $2000</h3>
+            <h3>Your Bookings :</h3>
+            <h3 id="totalSpent">Total Spent: $2000</h3>
           </div>
           <div class="bookings-info">
             <section class="bookings past-bookings">
               <h3>Past Bookings</h3>
-              <div></div>
+              <div id="pastBookings">
+              </div>
             </section>
             <section class="bookings upcoming-bookings">
               <h3>Upcoming Bookings</h3>
-              <div></div>
+              <div id="upcomingBookings"></div>
             </section>
           </div>
         </section>
@@ -52,6 +53,7 @@
           <input type="text" id="username" name="username"><br>
           <label for="password">Password:</label><br>
           <input type="text" id="password" name="password">
+          <input type="submit" value="Login" id="loginButton">
         </form>
       </div>
   </main>
