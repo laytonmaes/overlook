@@ -45,13 +45,14 @@ window.onload = () => {
        hotel = new Hotel(roomData,bookingData,customerData)
        }).then(() => {
            updateDate()
+           logIn()
        })
 }
 
-buttonLogin.addEventListener("click", (event) => {
-    event.preventDefault()
-    logIn()
-})
+// buttonLogin.addEventListener("click", (event) => {
+//     event.preventDefault()
+//     logIn()
+// })
 
 buttonDate.addEventListener("click", () => {
     let userInputDate = convertDateForData(inputDate.value)
@@ -88,8 +89,8 @@ let postData;
 let getData;
 
 const logIn = () => {
-    let username = inputUsername.value
-    let password = inputPassword.value
+    let username = "customer1"
+    let password = "overlook2021"
 
     let newUserNum = username.replace("customer", " ")
         newUserNum = parseInt(newUserNum)
@@ -98,14 +99,14 @@ const logIn = () => {
         userIndex = newUserNum
         user = hotel.customers[userIndex]
         displayUserInfo()
-        pageLogin.classList.add("hidden")
-        pageUserDashboard.classList.remove("hidden")
+        // pageLogin.classList.add("hidden")
+        // pageUserDashboard.classList.remove("hidden")
     } else {
         if(!username.includes("customer") || 1 > newUserNum > 50) {
-            errorUsername.classList.remove("hidden")
+            // errorUsername.classList.remove("hidden")
         }
         if (password !== "overlook2021") {
-            errorPassword.classList.remove("hidden")
+            // errorPassword.classList.remove("hidden")
         }
     }
 } 
