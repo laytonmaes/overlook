@@ -13,7 +13,6 @@
       <a href="#getting-started">Getting Started</a>
       <a href="#using-the-application">Using the Application</a>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
     <li><a href="#planning-resources">Planning Resources</a></li>
@@ -86,7 +85,7 @@ This will run the webpack in the terminal so you can view and use the applicatio
 When you load into the site, you are met with a simple login page. For this project, since it is more of a proof of concept, the username is "customer" followed by a number between 1 and 50 (ie. customer21)
 and the password is overlook2021.
 
-![User Dashboard](https://user-images.githubusercontent.com/43621994/165414649-e70dbd8c-9d19-4bbc-9dae-51bcc736c67e.png")
+![User Dashboard](https://user-images.githubusercontent.com/43621994/165417952-a5b941fa-e3e3-434b-82aa-847da4a3addf.png)
 
 Once you log in, you are met with a page that displays all of that users information, their previous bookings, their upcoming bookings, and the total amount of money a user has spent. there is also a space  space where you can create a new booking.
 
