@@ -1,99 +1,137 @@
-# Webpack Starter Kit
 
-## Clone This Repo
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <a href="#using-the-application">Using the Application</a>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#planning-resources">Planning Resources</a></li>
+  </ol>
+</details>
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+<!-- ABOUT THE PROJECT -->
+## Overlook Hotell
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+### About The Project
 
-## Setup
+![Overlook Hotel](https://user-images.githubusercontent.com/43621994/165414371-897e2469-ad41-4705-87fc-1fc53348452a.png)
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+Welcome to the Overlook Hotel! This is a small site i built over the course of a week, built to allow
+users to log in to a site and and be able to book rooms for any date.
 
-Then install the library dependencies. Run:
+With this application you are able to view a list of bookings made for a specific user, the users ID 
+specified by what username you log in under, and be able to post a booking back to a local API.
 
-```bash
-npm install
-```
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-## Where to Add Your Code
 
-### JavaScript
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+### Built With
 
-**Create all of your feature code files in the `src` directory.**
+In this project, I used these tools to help build, maintain, and populate the Web Application.
+I was tasked with utilizing data from an API as well as using Webpack to create a pleasant user experience
+for a hotel site.
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
+#### Languages
+* Javascript
+* HTML
+* Css
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
+#### Frameworks/Libraries
+* [JQuery](https://jquery.com)
+* [Webpack](https://webpack.js.org/)
+* Overlook Starter Kit Api as provided by Turing
 
-### HTML
 
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### Images
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
 
-## How to View Your Code in Action
+<!-- GETTING STARTED -->
+## Getting Started
 
-In the terminal, run:
+### Set Up Instructions
+1. Clone this repo to your local machine
+2. `cd ` into `overlook`
+3. Then, run NPM install from your command line: `npm install `
+    - Do not run `npm audit fix --force`. this could break the repo.
+4. After you have run npm install inside of your copy of this repo, run:
+`npm start`
+This will run the webpack in the terminal so you can view and use the application in your browser. Your terminal will likely display a large block of text as seen below:
+![Local Host Link](https://user-images.githubusercontent.com/43621994/161456081-7910945b-f2df-4167-a487-3d40cf2498fe.png)
 
-```bash
-npm start
-```
+5. Find the line that says `Project is running at http://localhost:8080/` Copy and paste that URL into your browser into your browser. You should have the application set up and ready to use!
 
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
+6. Make sure that you type `Control + C` in your terminal when you are done using the application. This ensure the server will stop running before your close your Terminal.
 
-```bash
-Project is running at http://localhost:8080/
-```
+7. do the same with the backend repo, installing it [here](https://github.com/turingschool-examples/overlook-api)
 
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
+8. make sure to run `npm install` and `npm start` on the api as well, or else the site will not work.
 
----
+### Using the Application
 
-## Test Files Organization
+When you load into the site, you are met with a simple login page. For this project, since it is more of a proof of concept, the username is "customer" followed by a number between 1 and 50 (ie. customer21)
+and the password is overlook2021.
 
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
+![User Dashboard](https://user-images.githubusercontent.com/43621994/165414649-e70dbd8c-9d19-4bbc-9dae-51bcc736c67e.png")
 
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
+Once you log in, you are met with a page that displays all of that users information, their previous bookings, their upcoming bookings, and the total amount of money a user has spent. there is also a space  space where you can create a new booking.
 
-## Running Your Tests
+In the date section, you can pick a date, defaulting to the current date, and upon submitting,
+all available rooms for that date will be displayer. you can filter them by the type of room, and the information about the room is displayed.
 
-Run your test suite using the command:
 
-```bash
-npm test
-```
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-The test results will output to the terminal.
+<!-- CONTACT -->
+## Contact
 
----
+Project Credits -
+[Dylan Duke](https://github.com/laytonmaes) |
 
-## Linting Your Code
+Project Git-hub Link: [https://user-images.githubusercontent.com/43621994/165414649-e70dbd8c-9d19-4bbc-9dae-51bcc736c67e.png](https://user-images.githubusercontent.com/43621994/165414649-e70dbd8c-9d19-4bbc-9dae-51bcc736c67e.png)
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
 
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
 
-## Webpack?
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
 
-## Deploying to GitHub Pages
 
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
 
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
+Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
+* [Turing Scool of Software & Design](https://turing.edu/)
+* [Evericons Free Use Icons](https://www.figma.com/file/8YZVHqvryXV7hIY30fYAvw/Evericons-(Copy)?node-id=0%3A1)
+* [GitHub Pages](https://pages.github.com)
+* [Font Awesome](https://fontawesome.com)
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- PLANNING RESOURCES -->
+## Planning Resources
+<!-- WIREFRAME -->
+
+*[Figma Design Board](https://www.figma.com/file/DmPUi7zGkvYjH6UzkwDL7J/overlook?node-id=0%3A1)
+
+*[Project Specs](https://frontend.turing.edu/projects/whats-cookin-part-one.html)
+
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
